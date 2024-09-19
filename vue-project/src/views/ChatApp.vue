@@ -31,11 +31,14 @@ const sendMessage = async () => {
   formData.append("message", message.value);
 
   try {
-    await fetch("http://localhost:3333/messages", {
+    const response = await fetch("http://localhost:3333/messages", {
       method: "POST",
       body: formData,
     });
-    message.value = ""; // Clear the input field
+    messages.value.push(message.value);
+    message.value = "";
+    const data = await response.json();
+    console.log(data);
   } catch (error) {
     console.error("Error sending message:", error);
   }

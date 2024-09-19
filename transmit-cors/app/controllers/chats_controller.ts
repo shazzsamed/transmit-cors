@@ -9,6 +9,7 @@ export default class ChatsController {
     if (!message) {
       return response.redirect().back()
     }
+
     console.log(
       'messgae received',
       `[${DateTime.now().toFormat('DD H:mm:ss')}] ${username ?? 'Guest'}: ${message}`
@@ -18,6 +19,8 @@ export default class ChatsController {
       message: `[${DateTime.now().toFormat('DD H:mm:ss')}] ${username ?? 'Guest'}: ${message}`,
     })
 
-    return response
+    return {
+      message: `[${DateTime.now().toFormat('DD H:mm:ss')}] ${username ?? 'Guest'}: ${message}`,
+    }
   }
 }
